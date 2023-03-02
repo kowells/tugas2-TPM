@@ -1,30 +1,96 @@
-
 import 'package:flutter/material.dart';
-
 
 class KalkulatorPage extends StatefulWidget {
   const KalkulatorPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _calculatorState createState() => _calculatorState();
+  _CalculatorPageRealState createState() => _CalculatorPageRealState();
 }
 
-// ignore: camel_case_types
-class _calculatorState extends State<KalkulatorPage> {
-  Widget calcbutton(String btntxt, Color btnColor, Color txtColor) {
-    return RaisedButton(
-      onPressed: () {
-        calculation(btntxt);
-      },
-      shape: const CircleBorder(),
-      color: btnColor,
-      padding: const EdgeInsets.all(20),
-      child: Text(
-        btntxt,
-        style: TextStyle(
-          fontSize: 35,
-          color: txtColor,
+class _CalculatorPageRealState extends State<KalkulatorPage> {
+  String _output = '0';
+  String _input = '';
+  double _value1 = 0.0;
+  double _value2 = 0.0;
+  String _operator = '';
+
+  void _handleNumberPress(String text) {
+    setState(() {
+      if (_output == '0') {
+        _output = text;
+      } else {
+        _output += text;
+      }
+      _input += text;
+    });
+  }
+
+  void _handleOperatorPress(String text) {
+    setState(() {
+      _value1 = double.parse(_output);
+      _operator = text;
+      _output = '0';
+      _input += text;
+    });
+  }
+
+  void _handleEqualPress() {
+    setState(() {
+      _value2 = double.parse(_output);
+      switch (_operator) {
+        case '+':
+          _output = (_value1 + _value2).toStringAsFixed(2);
+          break;
+        case '-':
+          _output = (_value1 - _value2).toStringAsFixed(2);
+          break;
+        case '×':
+          _output = (_value1 * _value2).toStringAsFixed(2);
+          break;
+        case '÷':
+          _output = (_value1 / _value2).toStringAsFixed(2);
+          break;
+        default:
+          //_output = '0';
+      }
+      _input = '';
+      _operator = '';
+    });
+  }
+
+  void _handleClearPress() {
+    setState(() {
+      _output = '0';
+      _input = '';
+      _value1 = 0.0;
+      _value2 = 0.0;
+      _operator = '';
+    });
+  }
+
+  Widget _buildButton(String text) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: ElevatedButton(
+          onPressed: () {
+            if (text == 'C') {
+              _handleClearPress();
+            } else if (text == '=') {
+              _handleEqualPress();
+            } else if (text == '+' ||
+                text == '-' ||
+                text == '×' ||
+                text == '÷') {
+              _handleOperatorPress(text);
+            } else {
+              _handleNumberPress(text);
+            }
+          },
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 24),
+          ),
         ),
       ),
     );
@@ -33,221 +99,70 @@ class _calculatorState extends State<KalkulatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text(
-          "Kalkulator",
-        ),
-        backgroundColor: Colors.black,
+        title: const Text('Calculator'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    '$text',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
-                    ),
-                  ),
-                ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Container(
+              padding:
+              const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+              alignment: Alignment.bottomRight,
+              child: Text(
+                _output,
+                style:
+                const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton('C', Colors.grey, Colors.white),
-                calcbutton('+/-', Colors.grey, Colors.white),
-                calcbutton('%', Colors.grey, Colors.white),
-                calcbutton('/', Colors.orange, Colors.white),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton('7', Colors.grey.shade800, Colors.white),
-                calcbutton('8', Colors.grey.shade800, Colors.white),
-                calcbutton('9', Colors.grey.shade800, Colors.white),
-                calcbutton('x', Colors.orange, Colors.white),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton('4', Colors.grey.shade800, Colors.white),
-                calcbutton('5', Colors.grey.shade800, Colors.white),
-                calcbutton('6', Colors.grey.shade800, Colors.white),
-                calcbutton('-', Colors.orange, Colors.white),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton('1', Colors.grey.shade800, Colors.white),
-                calcbutton('2', Colors.grey.shade800, Colors.white),
-                calcbutton('3', Colors.grey.shade800, Colors.white),
-                calcbutton('+', Colors.orange, Colors.white),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    calculation('0');
-                  },
-                  shape: const StadiumBorder(),
-                  padding: const EdgeInsets.fromLTRB(34, 20, 128, 20),
-                  color: Colors.grey.shade800,
-                  child: const Text(
-                    '0',
-                    style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                calcbutton('.', Colors.grey.shade800, Colors.white),
-                calcbutton('=', Colors.orange, Colors.white),
-              ],
-            ),
-          ],
-        ),
+          ),
+          Divider(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  _buildButton('7'),
+                  _buildButton('8'),
+                  _buildButton('9'),
+                  _buildButton('÷'),
+                ],
+              ),
+              Row(
+                children: [
+                  _buildButton('4'),
+                  _buildButton('5'),
+                  _buildButton('6'),
+                  _buildButton('×'),
+                ],
+              ),
+              Row(
+                children: [
+                  _buildButton('1'),
+                  _buildButton('2'),
+                  _buildButton('3'),
+                  _buildButton('-'),
+                ],
+              ),
+              Row(
+                children: [
+                  _buildButton('.'),
+                  _buildButton('0'),
+                  _buildButton('00'),
+                  _buildButton('+'),
+                ],
+              ),
+              Row(
+                children: [
+                  _buildButton('C'),
+                  _buildButton('='),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
-  }
-
-  dynamic text = '0';
-  double numOne = 0;
-  double numTwo = 0;
-
-  dynamic result = '';
-  dynamic finalResult = '';
-  dynamic opr = '';
-  dynamic preOpr = '';
-  void calculation(btnText) {
-    if (btnText == 'C') {
-      text = '0';
-      numOne = 0;
-      numTwo = 0;
-      result = '';
-      finalResult = '0';
-      opr = '';
-      preOpr = '';
-    } else if (opr == '=' && btnText == '=') {
-      if (preOpr == '+') {
-        finalResult = add();
-
-      } else if (preOpr == '-') {
-        finalResult = sub();
-      } else if (preOpr == 'x') {
-        finalResult = mul();
-      } else if (preOpr == '/') {
-        finalResult = div();
-      }
-
-    } else if (btnText == '+' ||
-        btnText == '-' ||
-        btnText == 'x' ||
-        btnText == '/' ||
-        btnText == '=') {
-      if (numOne == 0) {
-        numOne = double.parse(result);
-      }else {
-        numTwo = double.parse(result);
-      }
-
-      if (opr == '+') {
-        finalResult = add();
-      } else if (opr == '-') {
-        finalResult = sub();
-      } else if (opr == 'x') {
-        finalResult = mul();
-      } else if (opr == '/') {
-        finalResult = div();
-      }
-      preOpr = opr;
-      opr = btnText;
-      result = '';
-    } else if (btnText == '%') {
-      result = numOne / 100;
-      finalResult = doesContainDecimal(result);
-    } else if (btnText == '.') {
-      if (!result.toString().contains('.')) {
-        result = '$result.';
-      }
-      finalResult = result;
-    } else if (btnText == '+/-') {
-      result.toString().startsWith('-')
-          ? result = result.toString().substring(1)
-          : result = '-$result';
-      finalResult = result;
-    } else {
-      result = result + btnText;
-      finalResult = result;
-    }
-
-
-    setState(() {
-      text = finalResult;
-    });
-    numTwo = 0;
-    opr = '';
-    preOpr = '';
-
-  }
-
-
-  String add() {
-    result = (numOne + numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String sub() {
-    result = (numOne - numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String mul() {
-    result = (numOne * numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String div() {
-    result = (numOne / numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String doesContainDecimal(dynamic result) {
-    if (result.toString().contains('.')) {
-      List<String> splitDecimal = result.toString().split('.');
-      if (!(int.parse(splitDecimal[1]) > 0))
-        // ignore: curly_braces_in_flow_control_structures
-        return result = splitDecimal[0].toString();
-    }
-    return result;
   }
 }
