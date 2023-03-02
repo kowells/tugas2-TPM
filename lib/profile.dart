@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(
-                  'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'),
+                  'https://img2.pngdownload.id/20180606/lic/kisspng-indonesian-democratic-party-of-struggle-golkar-pol-perdjoeangan-5b17e1921b9ce9.6281767515282917301131.jpg'),
             ),
             SizedBox(height: 20),
             Text(
@@ -36,7 +36,7 @@ class ProfilePage extends StatelessWidget {
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(
-                  'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'),
+                  'https://img2.pngdownload.id/20180606/lic/kisspng-indonesian-democratic-party-of-struggle-golkar-pol-perdjoeangan-5b17e1921b9ce9.6281767515282917301131.jpg'),
             ),
             SizedBox(height: 20),
             Text(
@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
             CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(
-                  'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'),
+                  'https://img2.pngdownload.id/20180606/lic/kisspng-indonesian-democratic-party-of-struggle-golkar-pol-perdjoeangan-5b17e1921b9ce9.6281767515282917301131.jpg'),
             ),
             SizedBox(height: 20),
             Text(

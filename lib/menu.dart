@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:tugas2/profile.dart';
 import 'package:tugas2/kalkulator.dart';
 
-class HomePage extends StatelessWidget {
+class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Menu'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome to Home Page',
+              'Welcome to Menu',
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),

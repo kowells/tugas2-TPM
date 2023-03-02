@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas2/menu.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -29,7 +30,12 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuPage()),
+                );
+              },
               child: Text('Login'),
             ),
           ],
