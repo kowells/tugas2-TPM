@@ -100,7 +100,7 @@ class _CalculatorPageRealState extends State<KalkulatorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calculator'),
+        title: const Text('Kalkulator'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
