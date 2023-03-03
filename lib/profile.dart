@@ -18,8 +18,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(height: 20),
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://asset.kompas.com/crops/gPeOWFA3DUFaCuYq0NhrzsdXB7E=/0x0:779x519/750x500/data/photo/2021/10/15/61698c7aece86.jpg'),
+              backgroundImage: AssetImage('images/rizki.jpeg'),
             ),
             SizedBox(height: 20),
             Text(
@@ -31,12 +30,10 @@ class ProfilePage extends StatelessWidget {
               '123200064',
               style: TextStyle(fontSize: 16),
             ),
-
             SizedBox(height: 20),
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://asset.kompas.com/crops/gPeOWFA3DUFaCuYq0NhrzsdXB7E=/0x0:779x519/750x500/data/photo/2021/10/15/61698c7aece86.jpg'),
+              backgroundImage: AssetImage('images/bintang.jpg'),
             ),
             SizedBox(height: 20),
             Text(
@@ -48,13 +45,10 @@ class ProfilePage extends StatelessWidget {
               '123200087',
               style: TextStyle(fontSize: 16),
             ),
-
-
             SizedBox(height: 20),
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://asset.kompas.com/crops/gPeOWFA3DUFaCuYq0NhrzsdXB7E=/0x0:779x519/750x500/data/photo/2021/10/15/61698c7aece86.jpg'),
+              backgroundImage: AssetImage('images/ridwan.jpg'),
             ),
             SizedBox(height: 20),
             Text(
@@ -66,7 +60,6 @@ class ProfilePage extends StatelessWidget {
               '123200090',
               style: TextStyle(fontSize: 16),
             ),
-
           ],
         ),
       ),
