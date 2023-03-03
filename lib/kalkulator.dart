@@ -51,7 +51,7 @@ class _CalculatorPageRealState extends State<KalkulatorPage> {
           _output = (_value1 / _value2).toStringAsFixed(2);
           break;
         default:
-          //_output = '0';
+        //_output = '0';
       }
       _input = '';
       _operator = '';
@@ -105,62 +105,67 @@ class _CalculatorPageRealState extends State<KalkulatorPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
             child: Container(
               padding:
-              const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
               alignment: Alignment.bottomRight,
               child: Text(
                 _output,
                 style:
-                const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
               ),
             ),
           ),
           Divider(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  _buildButton('7'),
-                  _buildButton('8'),
-                  _buildButton('9'),
-                  _buildButton('÷'),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('4'),
-                  _buildButton('5'),
-                  _buildButton('6'),
-                  _buildButton('×'),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('1'),
-                  _buildButton('2'),
-                  _buildButton('3'),
-                  _buildButton('-'),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('.'),
-                  _buildButton('0'),
-                  _buildButton('00'),
-                  _buildButton('+'),
-                ],
-              ),
-              Row(
-                children: [
-                  _buildButton('C'),
-                  _buildButton('='),
-                ],
-              ),
-            ],
-          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.45,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  children: [
+                    _buildButton('7'),
+                    _buildButton('8'),
+                    _buildButton('9'),
+                    _buildButton('÷'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _buildButton('4'),
+                    _buildButton('5'),
+                    _buildButton('6'),
+                    _buildButton('×'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _buildButton('1'),
+                    _buildButton('2'),
+                    _buildButton('3'),
+                    _buildButton('-'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _buildButton('.'),
+                    _buildButton('0'),
+                    _buildButton('00'),
+                    _buildButton('+'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    _buildButton('C'),
+                    _buildButton('='),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tugas2/menu.dart';
 
@@ -10,31 +11,41 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            SizedBox(
+                child: Text(
               'Welcome to Login Page',
               style: TextStyle(fontSize: 24),
-            ),
+            )),
             SizedBox(height: 20),
-            TextField(
-              controller : usernameController,
-              decoration: InputDecoration(
-                hintText: 'Username',
-                border: OutlineInputBorder(),
-
-              ),
-            ),
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.75,
+                child: TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    border: OutlineInputBorder(),
+                  ),
+                )),
             SizedBox(height: 10),
-            TextField(
-              obscureText: true,
-              controller : passwordController,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                border: OutlineInputBorder(),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.75,
+              child: TextField(
+                obscureText: true,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
             SizedBox(height: 10),
             ElevatedButton(
+              style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(const Size(120, 40)),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)))),
               onPressed: () {
                 if (usernameController.text == 'admin' &&
                     passwordController.text == 'admin') {
